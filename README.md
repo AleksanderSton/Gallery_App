@@ -95,6 +95,17 @@ Główne grupy ścieżek obsługiwane przez aplikację:
      a następnie ponownie uruchomić serwer.
 5. Otwórz przeglądarkę internetową i przejdź pod adres `http://localhost:3000`.
 
+### Przykładowi użytkownicy (po imporcie bazy testowej)
+
+Po zaimportowaniu zrzutu bazy danych (zob. sekcja 7) dostępne są następujące konta testowe:
+
+| Nazwa użytkownika | Hasło       |
+|--------------------|-------------|
+| `JKowal`           | `haslo123`  |
+| `KaroNow`          | `12345678`  |
+| `admin`            | `admin123`  |
+| `jpawlowski`       | `12345678`  |
+
 ## 7. Import przykładowych danych (Bazy Testowej)
 
 Do projektu dołączono zrzut bazy danych wykonany za pomocą narzędzia `mongodump`, znajdujący się w folderze `backup/GalleryDB`. Zrzut został wygenerowany za pomocą polecenia:
