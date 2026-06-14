@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  h2(class='fw-semibold mb-4') 📊 #{title}
+
+  div(class='row')
+    div(class='col-md-4 mb-3')
+      div(class='card shadow-sm border-0 text-center')
+        div(class='card-body py-4')
+          div(class='fs-1') 👤
+          h3(class='fw-bold mt-2') #{user_count}
+          p(class='text-muted mb-0') Użytkownicy
+    div(class='col-md-4 mb-3')
+      div(class='card shadow-sm border-0 text-center')
+        div(class='card-body py-4')
+          div(class='fs-1') 🗂️
+          h3(class='fw-bold mt-2') #{gallery_count}
+          p(class='text-muted mb-0') Galerie
+    div(class='col-md-4 mb-3')
+      div(class='card shadow-sm border-0 text-center')
+        div(class='card-body py-4')
+          div(class='fs-1') 🖼️
+          h3(class='fw-bold mt-2') #{image_count}
+          p(class='text-muted mb-0') Obrazki

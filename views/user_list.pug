@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  div(class='d-flex justify-content-between align-items-center mb-3')
+    h2(class='fw-semibold') 👤 #{title}
+    if loggedUser === 'admin'
+      a(href='/users/user_add' class='btn btn-sm btn-primary') ➕ Dodaj użytkownika
+
+  if user_list.length
+    div(class='table-responsive')
+      table(class='table table-hover table-bordered align-middle')
+        thead(class='table-dark')
+          tr
+            th Imię
+            th Nazwisko
+            th Login
+            if loggedUser === 'admin'
+              th Akcje
+        tbody
+          each user in user_list
+            tr
+              td #{user.first_name}
+              td #{user.last_name}
+              td
+                span(class='badge bg-secondary') #{user.username}
+              if loggedUser === 'admin'
+                td
+                  a(href='/users/user_delete?user_id=' + user._id class='btn btn-sm btn-danger') Usuń
+  else
+    p(class='text-muted') Brak użytkowników.

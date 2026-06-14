@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  div(class='row justify-content-center mt-4')
+    div(class='col-md-5')
+      div(class='card shadow-sm border-0')
+        div(class='card-body p-4')
+          h2(class='card-title fw-semibold mb-4') ✏️ #{title}
+
+          form(method='POST')
+            div(class='mb-3')
+              label(for='i_name' class='form-label') Image Name
+              input#i_name(type='text' class='form-control' name='i_name' required value=image.name)
+            div(class='mb-3')
+              label(for='i_description' class='form-label') Description
+              input#i_description(type='text' class='form-control' name='i_description' required value=image.description)
+            div(class='mb-3')
+              label(for='i_gallery' class='form-label') Gallery
+              select#i_gallery(class='form-select' name='i_gallery' required)
+                each g in galleries
+                  if image.gallery.toString() === g._id.toString()
+                    option(value=g._id selected) #{g.name}
+                  else
+                    option(value=g._id) #{g.name}
+            button(type='submit' class='btn btn-primary w-100') Zapisz zmiany

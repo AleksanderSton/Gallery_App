@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h2(class='fw-semibold mb-4') ✏️ #{title}
+
+  div(class='card shadow-sm border-0')
+    div(class='card-body')
+      form(method='POST')
+        div(class='mb-3')
+          label(for='g_name' class='form-label') Nazwa galerii:
+          input#g_name(type='text' class='form-control' name='g_name' required value=gallery.name)
+        div(class='mb-3')
+          label(for='g_description' class='form-label') Opis:
+          textarea#g_description(class='form-control' name='g_description' required) #{gallery.description}
+        button(type='submit' class='btn btn-warning') Zapisz zmiany
+        a(href='/galleries' class='btn btn-secondary ms-2') Anuluj

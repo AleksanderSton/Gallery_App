@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  h2(class='fw-semibold mb-4') 🗂️ #{title}
+
+  div(class='card shadow-sm border-0')
+    div(class='card-body')
+      form(method='POST')
+        div(class='mb-3')
+          label(for='g_name' class='form-label') Nazwa galerii:
+          input#g_name(type='text' class='form-control' placeholder='min. 2 znaki' name='g_name' required value=(undefined==gallery ? '' : gallery.name))
+        
+        div(class='mb-3')
+          label(for='g_description' class='form-label') Opis:
+          input#g_description(type='text' class='form-control' placeholder='min. 2 znaki' name='g_description' required value=(undefined==gallery ? '' : gallery.description))
+        
+        div(class='mb-3')
+          label(for='g_user' class='form-label') Właściciel:
+          input#g_user(type='text' class='form-control bg-light' name='g_user_display' disabled value=owner.first_name + ' ' + owner.last_name)
+        
+        button(type='submit' class='btn btn-primary') Zatwierdź
+
+  if messages
+    div(class='alert alert-danger mt-3')
+      ul(class='mb-0')
+        for message in messages
+          li!= message

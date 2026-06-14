@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  div(class='card shadow-sm border-0 mb-4')
+    div(class='card-body text-center p-4')
+      img(src='/images/' + image.path alt=image.path class='img-fluid rounded shadow' style='max-height: 70vh;')
+      p(class='mt-3 lead text-muted')= image.description
+
+  div(class='card shadow-sm border-0 mb-4')
+    div(class='card-body')
+      h5(class='fw-semibold mb-3') 💬 Komentarze
+
+      form(method='POST' action='/images/image_show?image_id=' + image._id)
+        div(class='mb-2')
+          textarea(class='form-control' name='c_text' rows='3' placeholder='Napisz co myślisz...' required)
+        button(class='btn btn-success btn-sm mt-2' type='submit') Dodaj komentarz
+
+      hr
+
+      if comments && comments.length > 0
+        div(class='list-group mt-3')
+          each c in comments
+            div(class='list-group-item border-0 border-bottom')
+              div(class='d-flex justify-content-between')
+                span(class='fw-semibold text-primary') #{c.user.username}
+                small(class='text-muted') #{c.created_at.toLocaleString()}
+              p(class='mb-0 mt-1') #{c.text}
+      else
+        p(class='text-muted small') Brak komentarzy. Bądź pierwszy!
+
+  a(class='btn btn-outline-secondary btn-sm' href='/galleries/gallery_browse') ← Wróć do galerii

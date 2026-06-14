@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  div(class='row justify-content-center mt-4')
+    div(class='col-md-5')
+      div(class='card shadow-sm border-0')
+        div(class='card-body p-4')
+          h2(class='card-title fw-semibold mb-4') 🖼️ #{title}
+
+          form(method='POST' enctype='multipart/form-data')
+            div(class='mb-3')
+              label(for='i_name' class='form-label') Image Name
+              input#i_name(type='text' class='form-control' placeholder='min. 2 litery' name='i_name' required)
+            div(class='mb-3')
+              label(for='i_description' class='form-label') Description
+              input#i_description(type='text' class='form-control' placeholder='min. 2 litery' name='i_description' required)
+            div(class='mb-3')
+              label(for='i_path' class='form-label') Select file
+              input#i_path(type='file' class='form-control' name='i_path' required)
+            div(class='mb-3')
+              label(for='i_gallery' class='form-label') Gallery
+              select#i_gallery(class='form-select' name='i_gallery' required)
+                option(value='') -- Wybierz galerię --
+                each gallery in galleries
+                  option(value=gallery._id) #{gallery.name}
+            button(type='submit' class='btn btn-primary w-100') Prześlij
+
+          if messages
+            div(class='mt-3')
+              each message in messages
+                div(class='alert alert-danger py-1 small') !{message}

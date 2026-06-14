@@ -1,0 +1,65 @@
+doctype html
+html(lang='pl-PL')
+  head
+    title= title
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css")
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    header(class="bg-primary text-white text-center py-3 shadow-sm")
+      h1(class="mb-0 fs-3 fw-semibold")
+        span(class="me-2") 🖼️
+        | Galeria zdjęć by ASton
+
+    nav(class="navbar navbar-dark bg-dark px-3")
+      a(class="navbar-brand fs-6" href="/") Strona główna
+      ul(class="navbar-nav ms-auto")
+        if loggedUser
+          li(class="nav-item")
+            a(class="nav-link text-danger fw-bold" href='/users/user_logout')
+              span(class="badge bg-secondary me-2 text-white") #{loggedUser}
+              | Wyloguj się
+        else
+          li(class="nav-item")
+            a(class="nav-link" href='/users/user_login') Zaloguj się
+
+    div(class='container-fluid mt-3')
+      div(class='row')
+        div(class='col-lg-2 col-md-3')
+          div(class='card shadow-sm border-0')
+            div(class='card-body p-2')
+              p(class='text-uppercase text-muted small fw-bold px-2 mb-1') Menu
+              ul(class='nav flex-column') 
+                li(class="nav-item")
+                  a(class="nav-link py-1" href='/galleries/gallery_browse') 🔍 Przeglądaj galerie uzytkowników
+              hr(class='my-2')
+              p(class='text-uppercase text-muted small fw-bold px-2 mb-1') Dodaj
+              ul(class='nav flex-column')
+                if !loggedUser 
+                  li(class="nav-item")
+                    a(class="nav-link py-1" href='/users/user_add') ➕ Stwórz konto
+                if loggedUser
+                  li(class="nav-item")
+                    a(class="nav-link py-1" href='/galleries/gallery_add') ➕ Dodaj galerię
+                  li(class="nav-item")
+                    a(class="nav-link py-1" href='/images/image_add') ➕ Dodaj zdjęcie
+              if(loggedUser && loggedUser === 'admin')
+                hr(class='my-2')
+                p(class='text-uppercase text-muted small fw-bold px-2 mb-1') Panel admina
+                ul(class='nav flex-column')
+                  li(class="nav-item")
+                    a(class="nav-link py-1" href='/stats') 📊 Statystyki strony
+                  li(class="nav-item")
+                    a(class="nav-link py-1" href='/users') 👤 Użytkownicy
+                  li(class="nav-item")
+                    a(class="nav-link py-1" href='/galleries') 🗂️ Galerie
+                  li(class="nav-item")
+                    a(class="nav-link py-1" href='/images') 🖼️ Zdjęcia
+                  
+
+        div(class='col-lg-10 col-md-9')
+          block content
+
+    footer(class="bg-dark text-white text-center py-3 mt-4")
+      p(class="m-0 small text-white") &copy; 2026 Gallery App

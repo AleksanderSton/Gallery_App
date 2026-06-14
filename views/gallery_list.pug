@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  div(class='d-flex justify-content-between align-items-center mb-3')
+    h2(class='fw-semibold') 🗂️ #{title}
+    a(href='/galleries/gallery_add' class='btn btn-sm btn-primary') ➕ Dodaj galerię
+
+  if gallery_list.length
+    div(class='row')
+      each gallery in gallery_list
+        div(class='col-md-6 col-lg-4 mb-3')
+          div(class='card shadow-sm border-0 h-100')
+            div(class='card-body d-flex flex-column')
+              h5(class='card-title') #{gallery.name}
+              p(class='card-text text-muted small') #{gallery.description}
+              hr(class='my-2')
+              p(class='card-text small mb-0')
+                span(class='text-muted') 👤 
+                | #{gallery.owner.first_name} #{gallery.owner.last_name}
+              p(class='card-text small text-muted mb-3')
+                | 🕒 #{gallery.update_time.toLocaleString()}
+              
+              if loggedUser === 'admin' || (gallery.owner && gallery.owner.username === loggedUser)
+                div(class='mt-auto pt-2 border-top')
+                  a(href='/galleries/gallery_delete?gallery_id=' + gallery._id class='btn btn-sm btn-danger w-100') Usuń
+                  a(href='/galleries/gallery_update?gallery_id=' + gallery._id class='btn btn-sm btn-warning w-100 mt-1') Edytuj
+  
+  else
+    p(class='text-muted') Brak galerii.

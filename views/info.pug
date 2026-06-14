@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  div(class='row justify-content-center mt-5')
+    div(class='col-md-6')
+      div(class='card shadow-sm border-0')
+        div(class='card-body text-center p-5')
+          h2(class='text-danger fw-semibold mb-4') ⚠️ #{title}
+          
+          if messages
+            div(class='mb-4')
+              each message in messages
+                p(class='lead mb-1') !{message}
+                
+          div(class='d-flex justify-content-center gap-3')
+            a(class='btn btn-primary px-4' href='/users/user_login') Zaloguj się
+            a(class='btn btn-outline-secondary px-4' href='/') Powrót

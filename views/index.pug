@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  div(class='text-center mt-5')
+    h1(class='display-4 fw-bold') 🖼️ Galeria Zdjęć by ASton
+    
+    if loggedUser
+      p(class='lead mt-3') Witaj ponownie, 
+        strong(class='text-primary') #{loggedUser}
+        | !
+      p Cieszymy się, że jesteś z nami. Przejdź do galerii, aby zarządzać swoimi zdjęciami.
+      a(class='btn btn-primary mt-3' href='/galleries/gallery_browse') Przeglądaj galerie
+    else
+      p(class='lead mt-3') Witaj w aplikacji Galeria Zdjęć! 
+      p Zaloguj się, aby dodawać zdjęcia, tworzyć galerie i komentować zbiory innych użytkowników.
+      a(class='btn btn-outline-primary mt-3' href='/users/user_login') Przejdź do logowania

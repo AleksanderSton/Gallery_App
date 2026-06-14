@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  div(class='row justify-content-center mt-4')
+    div(class='col-md-4')
+      div(class='card shadow-sm border-0')
+        div(class='card-body p-4')
+          h2(class='card-title fw-semibold mb-4 text-center') 🔐 #{title}
+
+          form(method='POST')
+            div(class='mb-3')
+              label(for='username' class='form-label') Login
+              input#username(type='text' class='form-control' placeholder='Login' name='username' required value='')
+            div(class='mb-3')
+              label(for='password' class='form-label') Hasło
+              input#password(type='password' class='form-control' placeholder='Hasło' name='password' autocomplete='off' required value='')
+            button(type='submit' class='btn btn-primary w-100') Zaloguj się
+
+          if messages
+            div(class='mt-3')
+              each message in messages
+                div(class='alert alert-danger py-1 small') !{message}

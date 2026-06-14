@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  div(class='d-flex justify-content-between align-items-center mb-3')
+    h2(class='fw-semibold') 🖼️ #{title}
+    a(href='/images/image_add' class='btn btn-sm btn-primary') ➕ Dodaj zdjęcie
+
+  if image_list && image_list.length
+    div(class='table-responsive')
+      table(class='table table-hover table-bordered align-middle')
+        thead(class='table-dark')
+          tr
+            th Nazwa
+            th Opis
+            th Galeria
+            th Plik
+            if loggedUser === 'admin'
+              th Akcje
+        tbody
+          each image in image_list
+            tr
+              td #{image.name}
+              td #{image.description}
+              td
+                if image.gallery
+                  span(class='badge bg-secondary') #{image.gallery.name}
+                else
+                  span(class='badge bg-secondary') Brak
+              td
+                code #{image.path}
+              if loggedUser === 'admin'
+                td
+                  a(href='/images/image_delete?image_id=' + image._id class='btn btn-sm btn-danger') Usuń
+  else
+    p(class='text-muted') Brak obrazków.
